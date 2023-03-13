@@ -27,21 +27,20 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.widthAnchor.constraint(equalToConstant: 100),
-            button.heightAnchor.constraint(equalToConstant: 30)
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
+    
     @objc
     func showPopover(sender: UIButton) {
         let popupVC = DynamicVC()
         popupVC.preferredContentSize = CGSize(width: 300, height: 280)
         popupVC.modalPresentationStyle = .popover
         popupVC.popoverPresentationController?.sourceView = button
-        popupVC.popoverPresentationController?.sourceRect = CGRect(x: 50, y: 30, width: 0, height: 0)
+        popupVC.popoverPresentationController?.sourceRect = CGRect(x: button.frame.width / 2, y: button.frame.height, width: 0, height: 0)
         popupVC.popoverPresentationController?.delegate = self
         present(popupVC, animated: true, completion: nil)
-        }
+    }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
        return .none
